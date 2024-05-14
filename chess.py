@@ -48,3 +48,16 @@ def board_from_fen(fen):
                 
     return board
     
+    
+def format_board(board):
+    column_labels = '  a b c d e f g h'
+    formatted_board = [column_labels]
+    formatted_board.append(' +-----------------+')
+    
+    for i, row in enumerate(board):
+        formatted_board.append(f"{8 - i}| {' '.join(row)} |")
+    
+    formatted_board.append(' +-----------------+')
+    formatted_board.append(column_labels)
+    
+    return "\n".join(formatted_board)
