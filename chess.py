@@ -13,18 +13,18 @@ WHITE_PAWN = "♙"
 EMPTY = " "
 
 PIECE_SYMBOLS = {
-    'r': BLACK_ROOK,
-    'n': BLACK_KNIGHT,
-    'b': BLACK_BISHOP,
-    'q': BLACK_QUEEN,
-    'k': BLACK_KING,
-    'p': BLACK_PAWN,
-    'R': WHITE_ROOK,
-    'N': WHITE_KNIGHT,
-    'B': WHITE_BISHOP,
-    'Q': WHITE_QUEEN,
-    'K': WHITE_KING,
-    'P': WHITE_PAWN,
+    'r': WHITE_ROOK,
+    'n': WHITE_KNIGHT,
+    'b': WHITE_BISHOP,
+    'q': WHITE_QUEEN,
+    'k': WHITE_KING,
+    'p': WHITE_PAWN,
+    'R': BLACK_ROOK,
+    'N': BLACK_KNIGHT,
+    'B': BLACK_BISHOP,
+    'Q': BLACK_QUEEN,
+    'K': BLACK_KING,
+    'P': BLACK_PAWN,
 }
 
 STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
