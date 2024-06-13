@@ -140,6 +140,36 @@ def validate_knight_move(
     return False
 
 
+def validate_bishop_move(
+    board, start_row, start_col, target_row, target_col, current_color
+):
+    piece = board[start_row][start_col]
+    if current_color == "w" and piece != WHITE_BISHOP:
+        return False
+    if current_color == "b" and piece != BLACK_BISHOP:
+        return False
+
+    row_diff = abs(target_row - start_row)
+    col_diff = abs(target_col - start_col)
+    if row_diff != col_diff:
+        return False
+
+    row_step = 1 if target_row > start_row else -1
+    col_step = 1 if target_col > start_col else -1
+    for step in range(1, row_diff):
+        if board[start_row + step * row_step][start_col + step * col_step] != EMPTY:
+            return False
+
+    target_piece = board[target_row][target_col]
+    if (
+        target_piece == EMPTY
+        or (current_color == "w" and target_piece in BLACK_PIECES)
+        or (current_color == "b" and target_piece in WHITE_PIECES)
+    ):
+        return True
+    return False
+
+
 def validate_move(fen, start, target, color):
     board = decode_fen(fen)
     start_row, start_col = square_to_indices(start)
@@ -160,8 +190,12 @@ def validate_move(fen, start, target, color):
         )
 
     if piece in [WHITE_KNIGHT, BLACK_KNIGHT]:
-        print(start, target)
         return validate_knight_move(
+            board, start_row, start_col, target_row, target_col, color
+        )
+
+    if piece in [WHITE_BISHOP, BLACK_BISHOP]:
+        return validate_bishop_move(
             board, start_row, start_col, target_row, target_col, color
         )
 

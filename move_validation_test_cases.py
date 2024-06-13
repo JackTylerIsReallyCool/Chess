@@ -164,9 +164,98 @@ BLACK_KNIGHT_TEST_CASES = [
     },
 ]
 
+WHITE_BISHOP_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3B4/8/8/8",
+        "expected_moves": [
+            ("d4", "a1"),
+            ("d4", "b2"),
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "f6"),
+            ("d4", "g7"),
+            ("d4", "h8"),
+            ("d4", "g1"),
+            ("d4", "f2"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "b6"),
+            ("d4", "a7"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2P1P3/3B4/2P1P3/8/8",
+        "expected_moves": [
+            # Only pawn moves expected
+            ("c3", "c4"),
+            ("e3", "e4"),
+            ("c5", "c6"),
+            ("e5", "e6"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2p1p3/3B4/2p1p3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+        ],
+        "current_color": "w",
+    },
+]
+
+BLACK_BISHOP_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3b4/8/8/8",
+        "expected_moves": [
+            ("d4", "a1"),
+            ("d4", "b2"),
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "f6"),
+            ("d4", "g7"),
+            ("d4", "h8"),
+            ("d4", "g1"),
+            ("d4", "f2"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "b6"),
+            ("d4", "a7"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2p1p3/3b4/2p1p3/8/8",
+        "expected_moves": [
+            # Only pawn moves expected
+            ("c3", "c2"),
+            ("e3", "e2"),
+            ("c5", "c4"),
+            ("e5", "e4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2P1P3/3b4/2P1P3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+        ],
+        "current_color": "b",
+    },
+]
+
+
 test_cases = (
     WHITE_PAWN_TEST_CASES
     + BLACK_PAWN_TEST_CASES
     + WHITE_KNIGHT_TEST_CASES
     + BLACK_KNIGHT_TEST_CASES
+    + WHITE_BISHOP_TEST_CASES
+    + BLACK_BISHOP_TEST_CASES
 )
