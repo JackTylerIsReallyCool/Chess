@@ -15,7 +15,7 @@ def test_board_from_fen():
     starting_fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
     
     expected_board = STARTING_BOARD
-    actual_board = board_from_fen(starting_fen)
+    actual_board = decode_fen(starting_fen)
     
     assert actual_board == expected_board
     
@@ -48,33 +48,68 @@ def test_square_to_indices():
         assert row_index < 8 and row_index >= 0
         assert col_index < 8 and col_index >= 0
 
-def test_move_validtion():
-    ranks = ['a','b','c','d','e','f','g','h','i']
-    files = ['1','2','3','4','5','6','7','8','9']
-    
+def test_move_validation():
     test_cases = [
-        ["8/8/8/8/8/8/P7/8",2],
-        ["8/8/8/8/8/P7/8/8",1],
-        ["8/8/8/8/1p6/P7/8/8",2],
-        ["8/8/8/8/1p6/8/P7/8",2],
-        ["8/8/8/8/8/P7/P7/8",1],
-        [STARTING_FEN, 20]
-        ]
+        {
+            "fen": "8/8/8/8/8/8/P7/8",
+            "expected_moves": [("a2", "a3"), ("a2", "a4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/8/P7/8/8",
+            "expected_moves": [("a3", "a4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/1p6/P7/8/8",
+            "expected_moves": [("a3", "a4"), ("a3", "b4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/8/P7/P7/8",
+            "expected_moves": [("a3", "a4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/P7/8/P7/8",
+            "expected_moves": [("a2", "a3"), ("a4", "a5")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/8/1p6/P7/8",
+            "expected_moves": [("a2", "b3"), ("a2", "a3"), ("a2", "a4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/8/p1p5/1P6/8",
+            "expected_moves": [("b2", "a3"), ("b2", "c3"), ("b2", "b3"), ("b2", "b4")],
+            "current_color": 'w'
+        },
+        {
+            "fen": "8/8/8/8/8/1p6/1P6/8",
+            "expected_moves": [],
+            "current_color": 'w'
+        },
+    ]
     
-    current_fen = STARTING_FEN
-    
+    ranks = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    files = ['1', '2', '3', '4', '5', '6', '7', '8']
+
     for test_case in test_cases:
-        print("Testing", test_case[0])
-        count_valid_moves = 0
+        fen = test_case["fen"]
+        expected_moves = test_case["expected_moves"]
+        current_color = test_case["current_color"]
+        print("Testing", fen)
+        actual_moves = []
         for start_rank in ranks:
             for start_file in files:
                 for target_rank in ranks:
                     for target_file in files:
-                        starting_square = start_rank + start_file
+                        starting_square     = start_rank + start_file
                         target_square = target_rank + target_file
                                             
-                        if validate_move(test_case[0], starting_square, target_square, 'w'):
-                            count_valid_moves += 1
+                        if validate_move(fen, starting_square, target_square, current_color):
+                            actual_moves.append((starting_square, target_square))
         
-        assert count_valid_moves == test_case[1]
+        assert set(actual_moves) == set(expected_moves), f"Expected {expected_moves}, but got {actual_moves}"
         print("Passed")

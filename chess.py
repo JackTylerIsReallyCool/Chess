@@ -32,7 +32,7 @@ PIECE_SYMBOLS = {
 
 STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
-def board_from_fen(fen):
+def decode_fen(fen):
     board = []
     
     rows = fen.split('/')
@@ -72,74 +72,39 @@ def square_to_indices(square):
     col_index = ord(column) - ord('a')
     return row_index, col_index
 
-def validate_move(current_board_fen, starting_square, target_square, active_colour):
+def validate_pawn_move(board, start_row, start_col, target_row, target_col, color):
+    piece = board[start_row][start_col]
+    direction = -1 if piece == WHITE_PAWN else 1
+    start_row_initial = 6 if piece == WHITE_PAWN else 1
+
+    if target_col == start_col:
+        if target_row == start_row + direction and board[target_row][target_col] == EMPTY:
+            return True
+        if target_row == start_row + 2 * direction and start_row == start_row_initial and board[start_row + direction][start_col] == EMPTY and board[target_row][target_col] == EMPTY:
+            return True
+    elif abs(target_col - start_col) == 1 and target_row == start_row + direction:
+        if board[target_row][target_col] != EMPTY and (board[target_row][target_col] in BLACK_PIECES if color == 'w' else board[target_row][target_col] in WHITE_PIECES):
+            return True
+
+    return False
+
+
+def validate_move(fen, start, target, color):
+    board = decode_fen(fen)
+    start_row, start_col = square_to_indices(start)
+    target_row, target_col = square_to_indices(target)
+    piece = board[start_row][start_col]
     
-    #Validate that the move is well-formed
-    if starting_square == target_square:
+    if piece == EMPTY:
         return False
-    
-    if len(starting_square) != 2 or len(target_square) != 2:
+
+    if (color == 'w' and piece in BLACK_PIECES) or (color == 'b' and piece in WHITE_PIECES):
         return False
+
+    if piece in [WHITE_PAWN, BLACK_PAWN]:
+        return validate_pawn_move(board, start_row, start_col, target_row, target_col, color)
     
-    starting_square_indices = square_to_indices(starting_square)
-    target_square_indices = square_to_indices(target_square)
+    # Add more piece validation logic here.
     
-    #Rewrite this using range
-    if int(starting_square_indices[0]) > 7 or int(starting_square_indices[1] > 7):
-        return False
-    
-    if int(starting_square_indices[0]) < 0 or int(starting_square_indices[1] < 0):
-        return False
-    
-    if int(target_square_indices[0]) > 7 or int(target_square_indices[1] > 7):
-        return False
-    
-    if int(target_square_indices[0]) < 0 or int(target_square_indices[1] < 0):
-        return False
-    
-    current_board = board_from_fen(current_board_fen)
-    
-    starting_square_piece = current_board[starting_square_indices[0]][starting_square_indices[1]]
-    target_square_piece = current_board[target_square_indices[0]][target_square_indices[1]]
-    
-    if starting_square_piece == EMPTY:
-        return False
-    
-    if active_colour == 'w':
-        if starting_square_piece in BLACK_PIECES:
-            return False
+    return False
         
-        if target_square_piece in WHITE_PIECES:
-            return False
-    
-    if active_colour == 'b':
-        if starting_square_piece in WHITE_PIECES:
-            return False
-        
-        if target_square_piece in BLACK_PIECES:
-            return False
-        
-    if starting_square_piece == WHITE_PAWN:
-        #Cannot change file unless capturing
-        if target_square_piece == EMPTY and starting_square_indices[1] != target_square_indices[1]:
-            return False
-        #Cannot capture on 2 forward move
-        if target_square_piece != EMPTY and starting_square_indices[1] != target_square_indices[1] and starting_square_indices[0] - target_square_indices[0] != 1:
-            return False
-        #Cannot move 2 forward unless on starting rank
-        if starting_square_indices[0] - target_square_indices[0] > 2:
-            return False
-        #Cannot move more than 1 forward otherwise
-        if starting_square_indices[0] - target_square_indices[0] > 1 and starting_square_indices[0] != 6:
-            return False
-        #Cannot move backwards
-        if starting_square_indices[0] < target_square_indices[0]:
-            return False
-        
-        
-    
-    print(current_board[starting_square_indices[0]][starting_square_indices[1]], current_board[target_square_indices[0]][target_square_indices[1]])
-    
-    print(starting_square, target_square, starting_square_indices, target_square_indices)
-    
-    return True
