@@ -129,7 +129,7 @@ def test_move_validation():
             "current_color": 'b'
         }
     ]
-    
+    #
     test_cases = white_pawn_test_cases + black_pawn_test_cases
 
     ranks = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
