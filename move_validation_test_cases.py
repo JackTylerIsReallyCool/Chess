@@ -114,4 +114,59 @@ WHITE_KNIGHT_TEST_CASES = [
     },
 ]
 
-test_cases = WHITE_PAWN_TEST_CASES + BLACK_PAWN_TEST_CASES + WHITE_KNIGHT_TEST_CASES
+
+BLACK_KNIGHT_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/8/3n4/8/8",
+        "expected_moves": [
+            ("d3", "c1"),
+            ("d3", "b2"),
+            ("d3", "c5"),
+            ("d3", "e5"),
+            ("d3", "f4"),
+            ("d3", "f2"),
+            ("d3", "e1"),
+            ("d3", "b4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2P1P3/1P3P2/3n4/1P3P2/2P1P3",
+        "expected_moves": [
+            ("d3", "c1"),
+            ("d3", "b2"),
+            ("d3", "c5"),
+            ("d3", "e5"),
+            ("d3", "f4"),
+            ("d3", "f2"),
+            ("d3", "e1"),
+            ("d3", "b4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/8/8/8/8/n7",
+        "expected_moves": [("a1", "b3"), ("a1", "c2")],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2p1p3/1p3p2/3n4/1p3p2/2p1p3",
+        "expected_moves": [
+            # Only pawn moves valid
+            ("e5", "e4"),
+            ("f2", "f1"),
+            ("b4", "b3"),
+            ("f4", "f3"),
+            ("b2", "b1"),
+            ("c5", "c4"),
+        ],
+        "current_color": "b",
+    },
+]
+
+test_cases = (
+    WHITE_PAWN_TEST_CASES
+    + BLACK_PAWN_TEST_CASES
+    + WHITE_KNIGHT_TEST_CASES
+    + BLACK_KNIGHT_TEST_CASES
+)
