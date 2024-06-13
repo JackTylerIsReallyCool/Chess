@@ -49,7 +49,7 @@ def test_square_to_indices():
         assert col_index < 8 and col_index >= 0
 
 def test_move_validation():
-    test_cases = [
+    white_pawn_test_cases = [
         {
             "fen": "8/8/8/8/8/8/P7/8",
             "expected_moves": [("a2", "a3"), ("a2", "a4")],
@@ -91,7 +91,47 @@ def test_move_validation():
             "current_color": 'w'
         },
     ]
+
+    black_pawn_test_cases = [
+        {
+            "fen": "8/p7/8/8/8/8/8/8",
+            "expected_moves": [("a7", "a6"), ("a7", "a5")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/8/p7/8/8/8/8/8",
+            "expected_moves": [("a6", "a5")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/8/p7/1P6/8/8/8/8",
+            "expected_moves": [("a6", "a5"), ("a6", "b5")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/p7/1P6/1P6/8/8/8/8",
+            "expected_moves": [("a7", "a6"), ("a7", "a5"), ("a7", "b6")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/p7/p7/8/8/8/8/8",
+            "expected_moves": [("a6", "a5")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/p7/8/p7/8/8/8/8",
+            "expected_moves": [("a7", "a6"), ("a5", "a4")],
+            "current_color": 'b'
+        },
+        {
+            "fen": "8/1p6/1P6/8/8/8/8/8",
+            "expected_moves": [],
+            "current_color": 'b'
+        }
+    ]
     
+    test_cases = white_pawn_test_cases + black_pawn_test_cases
+
     ranks = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     files = ['1', '2', '3', '4', '5', '6', '7', '8']
 
