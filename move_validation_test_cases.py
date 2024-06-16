@@ -250,6 +250,207 @@ BLACK_BISHOP_TEST_CASES = [
     },
 ]
 
+WHITE_ROOK_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3R4/8/8/8",
+        "expected_moves": [
+            ("d4", "d1"),
+            ("d4", "d2"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "d6"),
+            ("d4", "d7"),
+            ("d4", "d8"),
+            ("d4", "a4"),
+            ("d4", "b4"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+            ("d4", "f4"),
+            ("d4", "g4"),
+            ("d4", "h4"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/3p4/2pRp3/3p4/8/8",
+        "expected_moves": [
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/3P4/2PRP3/3P4/8/8",
+        "expected_moves": [
+            ("c4", "c5"),
+            ("e4", "e5"),
+            ("d5", "d6"),
+        ],
+        "current_color": "w",
+    },
+]
+
+BLACK_ROOK_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3r4/8/8/8",
+        "expected_moves": [
+            ("d4", "d1"),
+            ("d4", "d2"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "d6"),
+            ("d4", "d7"),
+            ("d4", "d8"),
+            ("d4", "a4"),
+            ("d4", "b4"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+            ("d4", "f4"),
+            ("d4", "g4"),
+            ("d4", "h4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/3P4/2PrP3/3P4/8/8",
+        "expected_moves": [
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/3p4/2prp3/3p4/8/8",
+        "expected_moves": [
+            ("e4", "e3"),
+            ("d3", "d2"),
+            ("c4", "c3"),
+        ],
+        "current_color": "b",
+    },
+]
+
+WHITE_QUEEN_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3Q4/8/8/8",
+        "expected_moves": [
+            ("d4", "a1"),
+            ("d4", "b2"),
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "f6"),
+            ("d4", "g7"),
+            ("d4", "h8"),
+            ("d4", "g1"),
+            ("d4", "f2"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "b6"),
+            ("d4", "a7"),
+            ("d4", "d1"),
+            ("d4", "d2"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "d6"),
+            ("d4", "d7"),
+            ("d4", "d8"),
+            ("d4", "a4"),
+            ("d4", "b4"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+            ("d4", "f4"),
+            ("d4", "g4"),
+            ("d4", "h4"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2ppp3/2pQp3/2ppp3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2PPP3/2PQP3/2PPP3/8/8",
+        "expected_moves": [
+            ("c5", "c6"),
+            ("d5", "d6"),
+            ("e5", "e6"),
+        ],
+        "current_color": "w",
+    },
+]
+
+BLACK_QUEEN_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3q4/8/8/8",
+        "expected_moves": [
+            ("d4", "a1"),
+            ("d4", "b2"),
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "f6"),
+            ("d4", "g7"),
+            ("d4", "h8"),
+            ("d4", "g1"),
+            ("d4", "f2"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "b6"),
+            ("d4", "a7"),
+            ("d4", "d1"),
+            ("d4", "d2"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "d6"),
+            ("d4", "d7"),
+            ("d4", "d8"),
+            ("d4", "a4"),
+            ("d4", "b4"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+            ("d4", "f4"),
+            ("d4", "g4"),
+            ("d4", "h4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2PPP3/2PqP3/2PPP3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "e5"),
+            ("d4", "e3"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "c4"),
+            ("d4", "e4"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2ppp3/2pqp3/2ppp3/8/8",
+        "expected_moves": [
+            ("e3", "e2"),
+            ("d3", "d2"),
+            ("c3", "c2"),
+        ],
+        "current_color": "b",
+    },
+]
 
 test_cases = (
     WHITE_PAWN_TEST_CASES
@@ -258,4 +459,8 @@ test_cases = (
     + BLACK_KNIGHT_TEST_CASES
     + WHITE_BISHOP_TEST_CASES
     + BLACK_BISHOP_TEST_CASES
+    + WHITE_ROOK_TEST_CASES
+    + BLACK_ROOK_TEST_CASES
+    + WHITE_QUEEN_TEST_CASES
+    + BLACK_QUEEN_TEST_CASES
 )

@@ -143,11 +143,11 @@ def validate_knight_move(
 def validate_bishop_move(
     board, start_row, start_col, target_row, target_col, current_color
 ):
-    piece = board[start_row][start_col]
-    if current_color == "w" and piece != WHITE_BISHOP:
-        return False
-    if current_color == "b" and piece != BLACK_BISHOP:
-        return False
+    # piece = board[start_row][start_col]
+    # if current_color == "w" and piece != WHITE_BISHOP:
+    #     return False
+    # if current_color == "b" and piece != BLACK_BISHOP:
+    #     return False
 
     row_diff = abs(target_row - start_row)
     col_diff = abs(target_col - start_col)
@@ -165,6 +165,57 @@ def validate_bishop_move(
         target_piece == EMPTY
         or (current_color == "w" and target_piece in BLACK_PIECES)
         or (current_color == "b" and target_piece in WHITE_PIECES)
+    ):
+        return True
+    return False
+
+
+def validate_rook_move(
+    board, start_row, start_col, target_row, target_col, current_color
+):
+    # piece = board[start_row][start_col]
+    # if current_color == "w" and piece != WHITE_ROOK:
+    #     return False
+    # if current_color == "b" and piece != BLACK_ROOK:
+    #     return False
+
+    if start_row != target_row and start_col != target_col:
+        return False
+
+    if start_row == target_row:
+        step = 1 if target_col > start_col else -1
+        for col in range(start_col + step, target_col, step):
+            if board[start_row][col] != EMPTY:
+                return False
+    else:
+        step = 1 if target_row > start_row else -1
+        for row in range(start_row + step, target_row, step):
+            if board[row][start_col] != EMPTY:
+                return False
+
+    target_piece = board[target_row][target_col]
+    if (
+        target_piece == EMPTY
+        or (current_color == "w" and target_piece in BLACK_PIECES)
+        or (current_color == "b" and target_piece in WHITE_PIECES)
+    ):
+        return True
+    return False
+
+
+def validate_queen_move(
+    board, start_row, start_col, target_row, target_col, current_color
+):
+    piece = board[start_row][start_col]
+    if current_color == "w" and piece != WHITE_QUEEN:
+        return False
+    if current_color == "b" and piece != BLACK_QUEEN:
+        return False
+
+    if validate_bishop_move(
+        board, start_row, start_col, target_row, target_col, current_color
+    ) or validate_rook_move(
+        board, start_row, start_col, target_row, target_col, current_color
     ):
         return True
     return False
@@ -196,6 +247,16 @@ def validate_move(fen, start, target, color):
 
     if piece in [WHITE_BISHOP, BLACK_BISHOP]:
         return validate_bishop_move(
+            board, start_row, start_col, target_row, target_col, color
+        )
+
+    if piece in [WHITE_ROOK, BLACK_ROOK]:
+        return validate_rook_move(
+            board, start_row, start_col, target_row, target_col, color
+        )
+
+    if piece in [WHITE_QUEEN, BLACK_QUEEN]:
+        return validate_queen_move(
             board, start_row, start_col, target_row, target_col, color
         )
 
