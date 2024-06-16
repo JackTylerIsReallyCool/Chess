@@ -452,6 +452,104 @@ BLACK_QUEEN_TEST_CASES = [
     },
 ]
 
+WHITE_KING_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3K4/8/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "c4"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "e3"),
+            ("d4", "e4"),
+            ("d4", "e5"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2ppp3/2pKp3/2ppp3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "c4"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "e3"),
+            ("d4", "e4"),
+            ("d4", "e5"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/2PPP3/2PKP3/2PPP3/8/8",
+        "expected_moves": [
+            ("c5", "c6"),
+            ("d5", "d6"),
+            ("e5", "e6"),
+        ],
+        "current_color": "w",
+    },
+    {
+        "fen": "8/8/8/8/8/8/8/K7",
+        "expected_moves": [
+            ("a1", "a2"),
+            ("a1", "b1"),
+            ("a1", "b2"),
+        ],
+        "current_color": "w",
+    },
+]
+
+BLACK_KING_TEST_CASES = [
+    {
+        "fen": "8/8/8/8/3k4/8/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "c4"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "e3"),
+            ("d4", "e4"),
+            ("d4", "e5"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2PPP3/2PkP3/2PPP3/8/8",
+        "expected_moves": [
+            ("d4", "c3"),
+            ("d4", "c4"),
+            ("d4", "c5"),
+            ("d4", "d3"),
+            ("d4", "d5"),
+            ("d4", "e3"),
+            ("d4", "e4"),
+            ("d4", "e5"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/2ppp3/2pkp3/2ppp3/8/8",
+        "expected_moves": [
+            ("c3", "c2"),
+            ("d3", "d2"),
+            ("e3", "e2"),
+        ],
+        "current_color": "b",
+    },
+    {
+        "fen": "8/8/8/8/8/8/8/k7",
+        "expected_moves": [
+            ("a1", "a2"),
+            ("a1", "b1"),
+            ("a1", "b2"),
+        ],
+        "current_color": "b",
+    },
+]
+
 test_cases = (
     WHITE_PAWN_TEST_CASES
     + BLACK_PAWN_TEST_CASES
@@ -463,4 +561,6 @@ test_cases = (
     + BLACK_ROOK_TEST_CASES
     + WHITE_QUEEN_TEST_CASES
     + BLACK_QUEEN_TEST_CASES
+    + WHITE_KING_TEST_CASES
+    + BLACK_KING_TEST_CASES
 )

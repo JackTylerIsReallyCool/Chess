@@ -221,6 +221,28 @@ def validate_queen_move(
     return False
 
 
+def validate_king_move(
+    board, start_row, start_col, target_row, target_col, current_color
+):
+    piece = board[start_row][start_col]
+    if current_color == "w" and piece != WHITE_KING:
+        return False
+    if current_color == "b" and piece != BLACK_KING:
+        return False
+
+    row_diff = abs(target_row - start_row)
+    col_diff = abs(target_col - start_col)
+    if row_diff <= 1 and col_diff <= 1:
+        target_piece = board[target_row][target_col]
+        if (
+            target_piece == EMPTY
+            or (current_color == "w" and target_piece in BLACK_PIECES)
+            or (current_color == "b" and target_piece in WHITE_PIECES)
+        ):
+            return True
+    return False
+
+
 def validate_move(fen, start, target, color):
     board = decode_fen(fen)
     start_row, start_col = square_to_indices(start)
@@ -257,6 +279,11 @@ def validate_move(fen, start, target, color):
 
     if piece in [WHITE_QUEEN, BLACK_QUEEN]:
         return validate_queen_move(
+            board, start_row, start_col, target_row, target_col, color
+        )
+
+    if piece in [WHITE_KING, BLACK_KING]:
+        return validate_king_move(
             board, start_row, start_col, target_row, target_col, color
         )
 
